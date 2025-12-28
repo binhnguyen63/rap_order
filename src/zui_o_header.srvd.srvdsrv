@@ -1,0 +1,7 @@
+@EndUserText.label: 'server def for order header'
+define service ZUI_O_HEADER {
+  expose Zc_O_Header;
+  expose ZC_O_ITEM;
+  expose ZC_O_HISTORY;
+  expose ZC_O_ACCOUNT;
+}

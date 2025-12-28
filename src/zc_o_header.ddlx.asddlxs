@@ -1,0 +1,75 @@
+@Metadata.layer: #CORE
+annotate entity Zc_O_Header
+  with
+{
+  @UI.facet: [
+    { id: 'OrderHeader',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Order Header',
+      position: 10 }
+  ]
+
+  @UI: {
+    lineItem:       [ { position: 10, label: 'Order Number' } ],
+    identification: [ { position: 10, label: 'Order Number' } ],
+    selectionField: [ { position: 10 } ]
+  }
+  OrderNumber;
+
+  @UI: {
+    lineItem:       [ { position: 20, label: 'Company Code' } ],
+    identification: [ { position: 20, label: 'Company Code' } ],
+    selectionField: [ { position: 20 } ]
+  }
+  CompanyCode;
+
+  @UI: {
+    lineItem:       [ { position: 30, label: 'Vendor Number' } ],
+    identification: [ { position: 30, label: 'Vendor Number' } ],
+    selectionField: [ { position: 30 } ]
+  }
+  VendorNumber;
+
+  @UI: {
+    lineItem:       [ { position: 40, label: 'Document Date' } ],
+    identification: [ { position: 40, label: 'Document Date' } ],
+    selectionField: [ { position: 40 } ]
+  }
+  DocumentDate;
+
+  @UI: {
+    lineItem:       [ { position: 50, label: 'Status' } ],
+    identification: [ { position: 50, label: 'Status' } ],
+    selectionField: [ { position: 50 } ]
+  }
+  Status;
+
+  @UI: {
+    lineItem:       [ { position: 60, label: 'Currency' } ],
+    identification: [ { position: 60, label: 'Currency' } ],
+    selectionField: [ { position: 60 } ]
+  }
+  Currency;
+
+  @UI: {
+    lineItem:       [ { position: 70, label: 'Total Value' } ],
+    identification: [ { position: 70, label: 'Total Value' } ]
+  }
+  TotalValue;
+
+  @UI: { identification: [ { position: 80, label: 'Created By' } ] }
+  Createdby;
+
+  @UI: { identification: [ { position: 90, label: 'Created At' } ] }
+  Createdat;
+
+  @UI: { identification: [ { position: 100, label: 'Last Changed By' } ] }
+  Lastchangedby;
+
+  @UI: { identification: [ { position: 110, label: 'Last Changed At' } ] }
+  Lastchangedat;
+
+  @UI: { identification: [ { position: 120, label: 'Local Last Changed At' } ] }
+  Locallastchangedat;
+}

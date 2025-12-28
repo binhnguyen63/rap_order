@@ -1,0 +1,39 @@
+projection;
+strict ( 2 );
+
+define behavior for Zc_O_Header //alias <alias_name>
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _Item { create; }
+}
+
+define behavior for ZC_O_ITEM //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Header;
+  use association _Account { create; }
+  use association _History { create; }
+}
+
+define behavior for ZC_O_ACCOUNT //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Item;
+  use association _Header;
+}
+
+define behavior for ZC_O_HISTORY //alias <alias_name>
+{
+  use update;
+  use delete;
+
+  use association _Item;
+  use association _Header;
+}

@@ -1,0 +1,119 @@
+managed implementation in class zbp_r_o_header unique;
+strict ( 2 );
+
+define behavior for ZR_O_HEADER //alias <alias_name>
+persistent table zsac_o_header
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+late numbering
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) OrderNumber;
+  association _Item { create; }
+
+mapping for zsac_o_header
+  {
+    OrderNumber         = order_number;
+    CompanyCode         = company_code;
+    VendorNumber        = vendor_number;
+    DocumentDate        = document_date;
+    Status              = status;
+    Currency            = currency;
+    TotalValue          = total_value;
+    Createdby           = createdby;
+    Createdat           = createdat;
+    Lastchangedby       = lastchangedby;
+    Lastchangedat       = lastchangedat;
+    Locallastchangedat  = locallastchangedat;
+  }
+}
+
+define behavior for ZI_O_ITEM //alias <alias_name>
+persistent table zsac_o_item
+lock dependent by _Header
+authorization dependent by _Header
+etag master lastchangedat
+late numbering
+{
+  update;
+  delete;
+  field ( readonly ) OrderNumber, ItemNumber;
+  association _Header;
+  association _Account { create; }
+  association _History { create; }
+  mapping for zsac_o_item
+  {
+    OrderNumber         = order_number;
+    ItemNumber          = item_number;
+    Material            = material;
+    Quantity            = quantity;
+    NetPrice            = net_price;
+    ItemValue           = item_value;
+
+    Createdby           = createdby;
+    Createdat           = createdat;
+    Lastchangedby       = lastchangedby;
+    Lastchangedat       = lastchangedat;
+    Locallastchangedat  = locallastchangedat;
+  }
+}
+
+define behavior for ZI_O_ACCOUNT //alias <alias_name>
+persistent table zsac_o_account
+lock dependent by _Header
+authorization dependent by _Header
+etag master lastchangedat
+late numbering
+{
+  update;
+  delete;
+  field ( readonly ) OrderNumber, ItemNumber, AccLine;
+  association _Item;
+  association _Header;
+   mapping for zsac_o_account
+  {
+    OrderNumber         = order_number;
+    ItemNumber          = item_number;
+    AccLine             = acc_line;
+    GlAccount           = gl_account;
+    CostNumber          = cost_number;
+    Amount              = amount;
+    Createdby           = createdby;
+    Createdat           = createdat;
+    Lastchangedby       = lastchangedby;
+    Lastchangedat       = lastchangedat;
+    Locallastchangedat  = locallastchangedat;
+  }
+}
+
+define behavior for ZI_O_HISTORY //alias <alias_name>
+persistent table zsac_o_history
+lock dependent by _Header
+authorization dependent by _Header
+etag master lastchangedat
+late numbering
+{
+  update;
+  delete;
+  field ( readonly ) ItemNumber, OrderNumber, HistId;
+  association _Item;
+  association _Header;
+  mapping for zsac_o_history
+  {
+    OrderNumber        = order_number;
+    ItemNumber         = item_number;
+    HistId             = hist_id;
+    MovementType       = movement_type;
+    PostingDate        = posting_date;
+    MovQty                = mov_qty;
+
+    Createdby          = createdby;
+    Createdat          = createdat;
+    Lastchangedby      = lastchangedby;
+    Lastchangedat      = lastchangedat;
+    Locallastchangedat = locallastchangedat;
+  }
+}

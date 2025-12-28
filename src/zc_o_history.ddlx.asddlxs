@@ -1,0 +1,66 @@
+@Metadata.layer: #CORE
+annotate entity ZC_O_HISTORY
+with
+{
+  @UI.facet: [
+    {
+      id: 'OrderHistory',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'History',
+      position: 10
+    }
+  ]
+
+  @UI: {
+    lineItem:       [ { position: 10, label: 'Order Number' } ],
+    identification: [ { position: 10, label: 'Order Number' } ],
+    selectionField :  [ { position: 10 } ]
+  }
+  OrderNumber;
+
+  @UI: {
+    lineItem:       [ { position: 20, label: 'Item Number' } ],
+    identification: [ { position: 20, label: 'Item Number' } ]
+  }
+  ItemNumber;
+
+  @UI: {
+    lineItem:       [ { position: 30, label: 'History ID' } ],
+    identification: [ { position: 30, label: 'History ID' } ]
+  }
+  HistId;
+
+  @UI: {
+    lineItem:       [ { position: 40, label: 'Movement Type' } ],
+    identification: [ { position: 40, label: 'Movement Type' } ]
+  }
+  MovementType;
+
+  @UI: {
+    lineItem:       [ { position: 50, label: 'Posting Date' } ],
+    identification: [ { position: 50, label: 'Posting Date' } ]
+  }
+  PostingDate;
+
+  @UI: {
+    lineItem:       [ { position: 60, label: 'Movement Quantity' } ],
+    identification: [ { position: 60, label: 'Movement Quantity' } ]
+  }
+  MovQty;
+
+  @UI.hidden: true
+  Createdby;
+
+  @UI.hidden: true
+  Createdat;
+
+  @UI.hidden: true
+  Lastchangedby;
+
+  @UI.hidden: true
+  Lastchangedat;
+
+  @UI.hidden: true
+  Locallastchangedat;
+}

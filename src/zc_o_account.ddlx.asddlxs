@@ -1,0 +1,72 @@
+@Metadata.layer: #CORE
+  @UI.headerInfo: {
+    typeName:       'Account',
+    typeNamePlural: 'Accounts',
+    title:          { type: #STANDARD, value: 'AccLine' },
+    description:    { value: 'GlAccount' }
+  }
+annotate entity ZC_O_ACCOUNT with
+{
+
+
+  @UI.facet: [
+    { id: 'OrderAccount', purpose: #STANDARD, type: #IDENTIFICATION_REFERENCE, label: 'Account Assignment', position: 10 },
+        {
+      id: 'OrderItem',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Order Item',
+      position: 20,
+      targetElement: '_Item'
+    }
+  ]
+
+  @UI: { lineItem: [{ position: 10, label: 'Order Number' }],
+         identification: [{ position: 10, label: 'Order Number' }],
+         selectionField: [{ position: 10 }]}
+  OrderNumber;
+
+  @UI: { lineItem: [{ position: 20, label: 'Item Number' }],
+         identification: [{ position: 20, label: 'Item Number' }],
+         selectionField: [{ position: 20 }] }
+  ItemNumber;
+
+  @UI: { lineItem: [{ position: 30, label: 'Account Line' }],
+         identification: [{ position: 30, label: 'Account Line' }],
+         selectionField: [{ position: 30 }] }
+  AccLine;
+
+  @UI: { lineItem: [{ position: 40, label: 'G/L Account' }],
+         identification: [{ position: 40, label: 'G/L Account' }],
+         selectionField: [{ position: 40 }] }
+  GlAccount;
+
+  @UI: { lineItem: [{ position: 50, label: 'Cost Number' }],
+         identification: [{ position: 50, label: 'Cost Number' }],
+         selectionField: [{ position: 50 }] }
+  CostNumber;
+
+  @UI: { lineItem: [{ position: 60, label: 'Amount' }],
+         identification: [{ position: 60, label: 'Amount' }] }
+  Amount;
+
+  @UI: { lineItem: [{ position: 70, label: 'Currency' }],
+         identification: [{ position: 70, label: 'Currency' }],
+         selectionField: [{ position: 70}] }
+  Currency;
+
+  @UI.hidden: true
+  Createdby;
+
+  @UI.hidden: true
+  Createdat;
+
+  @UI.hidden: true
+  Lastchangedby;
+
+  @UI.hidden: true
+  Lastchangedat;
+
+  @UI.hidden: true
+  Locallastchangedat;
+}

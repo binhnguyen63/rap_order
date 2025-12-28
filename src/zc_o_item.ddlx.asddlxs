@@ -1,0 +1,80 @@
+@Metadata.layer: #CORE
+annotate entity ZC_O_ITEM
+with
+{
+  /* ---------- Facets (Object Page Sections) ---------- */
+  @UI.facet: [
+    {
+      id: 'OrderItem',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Order Item',
+      position: 10
+    }
+  ]
+
+  /* ---------- Order Number ---------- */
+  @UI: {
+    lineItem:       [ { position: 10, label: 'Order Number' } ],
+    selectionField: [ { position: 10 } ],
+    identification: [ { position: 10, label: 'Order Number' } ]
+  }
+  OrderNumber;
+
+  /* ---------- Item Number ---------- */
+  @UI: {
+    lineItem:       [ { position: 20, label: 'Item Number' } ],
+    identification: [ { position: 20, label: 'Item Number' } ]
+  }
+  ItemNumber;
+
+  /* ---------- Material ---------- */
+  @UI: {
+    lineItem:       [ { position: 30, label: 'Material' } ],
+    identification: [ { position: 30, label: 'Material' } ]
+  }
+  Material;
+
+  /* ---------- Quantity ---------- */
+  @UI: {
+    lineItem:       [ { position: 40, label: 'Quantity' } ],
+    identification: [ { position: 40, label: 'Quantity' } ]
+  }
+  Quantity;
+
+  /* ---------- Net Price ---------- */
+  @UI: {
+    lineItem:       [ { position: 50, label: 'Net Price' } ],
+    identification: [ { position: 50, label: 'Net Price' } ]
+  }
+  NetPrice;
+
+  /* ---------- Item Value ---------- */
+  @UI: {
+    lineItem:       [ { position: 60, label: 'Item Value' } ],
+    identification: [ { position: 60, label: 'Item Value' } ]
+  }
+  ItemValue;
+
+  /* ---------- Currency ---------- */
+  @UI: {
+    identification: [ { position: 70, label: 'Currency' } ]
+  }
+  Currency;
+
+  /* ---------- Audit Fields (Object Page only) ---------- */
+  @UI: { identification: [ { position: 80, label: 'Created By' } ] }
+  Createdby;
+
+  @UI: { identification: [ { position: 90, label: 'Created At' } ] }
+  Createdat;
+
+  @UI: { identification: [ { position: 100, label: 'Last Changed By' } ] }
+  Lastchangedby;
+
+  @UI: { identification: [ { position: 110, label: 'Last Changed At' } ] }
+  Lastchangedat;
+
+  @UI: { identification: [ { position: 120, label: 'Local Last Changed At' } ] }
+  Locallastchangedat;
+}
