@@ -7,7 +7,15 @@ annotate entity Zc_O_Header
       purpose: #STANDARD,
       type: #IDENTIFICATION_REFERENCE,
       label: 'Order Header',
-      position: 10 }
+      position: 10 },
+            {
+      id: 'OrderItem',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Order Item',
+      position: 20,
+      targetElement: '_Item'
+    }
   ]
 
   @UI: {
@@ -39,7 +47,7 @@ annotate entity Zc_O_Header
   DocumentDate;
 
   @UI: {
-    lineItem:       [ { position: 50, label: 'Status' } ],
+    lineItem:       [ { position: 50, label: 'Status' }, { position: 20, type: #FOR_ACTION, dataAction: 'approve', label: 'Approve' } ],
     identification: [ { position: 50, label: 'Status' } ],
     selectionField: [ { position: 50 } ]
   }

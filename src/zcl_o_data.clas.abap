@@ -9,11 +9,11 @@ CLASS zcl_o_data DEFINITION
   PROTECTED SECTION.
   PRIVATE SECTION.
 
-  METHODS: generate_o_header
-  importing headersNum TYPE i,
-  generate_o_item,
-  generate_o_history,
-  generate_o_account.
+    METHODS: generate_o_header
+      IMPORTING headersNum TYPE i,
+      generate_o_item,
+      generate_o_history,
+      generate_o_account.
 
 ENDCLASS.
 
@@ -23,14 +23,16 @@ CLASS zcl_o_data IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
-  generate_o_header( 5 ).
+    generate_o_header( 1 ).
   ENDMETHOD.
   METHOD generate_o_account.
 
   ENDMETHOD.
 
   METHOD generate_o_header.
-  DELETE FROM zsac_o_header.
+    DELETE FROM zsac_o_header.
+    DELETE FROM zsac_o_item.
+    DELETE FROM zsac_o_history.
 *  DO headersNum TIMES.
 *    DATA(lv_i) = sy-index.
 *    DATA headerTable TYPE STANDARD TABLE OF ZSAC_O_HEADER.
@@ -47,30 +49,65 @@ CLASS zcl_o_data IMPLEMENTATION.
 *     INSERT zsac_o_header FROM TABLE @headerTable.
 *  ENDDO.
 
-   DO headersNum TIMES.
-   DATA(lv_i) = sy-index.
-    MODIFY ENTITIES OF ZR_O_HEADER
-    ENTITY ZR_O_HEADER
-    CREATE FIELDS (     CompanyCode
-     VendorNumber
-     DocumentDate
-    Status
-    Currency
-     TotalValue  ) WITH VALUE #( (
-     %cid                 = 'newHeader01'
-        CompanyCode = '1001'
-     VendorNumber = '1000000000'
-     DocumentDate = cl_abap_context_info=>get_system_date( )
-    Status = 'N'
-    Currency = 'USD'
-     TotalValue = '23.23'
-     ) )
-     MAPPED DATA(ls_mapped)
-     FAILED DATA(ls_failed)
-     REPORTED DATA(ls_reported).
-     COMMIT ENTITIES.
+    DO headersNum TIMES.
+      DATA(lv_i) = sy-index.
+      MODIFY ENTITIES OF zr_o_header
+      ENTITY zr_o_header
+      CREATE FIELDS (     CompanyCode
+       VendorNumber
+       DocumentDate
+      Status
+      Currency
+       TotalValue  ) WITH VALUE #( (
+       %cid                 = 'newHeader01'
+          CompanyCode = '1001'
+          VendorNumber = '1000000000'
+          DocumentDate = cl_abap_context_info=>get_system_date( )
+          Status = 'N'
+          Currency = 'USD'
+          TotalValue = '23.23'
+       ) )
 
-   ENDDO.
+       ENTITY zr_o_header
+       CREATE BY \_Item FROM VALUE #( (
+        %cid_ref = 'newHeader01'
+        %target = VALUE #( (
+              %cid = 'newItem01'
+              Material = 'leather'
+              Quantity = '1'
+              NetPrice = '5'
+              %control = VALUE #(
+              Material = if_abap_behv=>mk-on
+              Quantity = if_abap_behv=>mk-on
+              NetPrice = if_abap_behv=>mk-on
+              ItemValue = if_abap_behv=>mk-on
+
+          )
+           ) )
+
+        )  )
+
+       ENTITY zi_o_item
+       CREATE BY \_History FROM VALUE #( (
+            %cid_ref = 'newItem01'
+            %target = VALUE #( (
+            %cid = 'newHistory01'
+             MovementType = 'I'
+             PostingDate = cl_abap_context_info=>get_system_date(  )
+             MovQty = 12
+             %control = VALUE #(
+                MovementType = if_abap_behv=>mk-on
+             PostingDate = if_abap_behv=>mk-on
+             MovQty = if_abap_behv=>mk-on
+              )
+              ) )
+        ) )
+       MAPPED DATA(ls_mapped)
+       FAILED DATA(ls_failed)
+       REPORTED DATA(ls_reported).
+      COMMIT ENTITIES.
+
+    ENDDO.
 
   ENDMETHOD.
 

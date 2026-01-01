@@ -13,6 +13,8 @@ late numbering
   delete;
   field ( readonly ) OrderNumber;
   association _Item { create; }
+  action ( features : instance ) approve result [1] $self;
+
 
 mapping for zsac_o_header
   {
@@ -44,6 +46,7 @@ late numbering
   association _Header;
   association _Account { create; }
   association _History { create; }
+    determination calculateItemValue on modify { field Quantity; field NetPrice; }
   mapping for zsac_o_item
   {
     OrderNumber         = order_number;

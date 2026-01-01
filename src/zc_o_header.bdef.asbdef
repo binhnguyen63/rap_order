@@ -8,6 +8,7 @@ define behavior for Zc_O_Header //alias <alias_name>
   use delete;
 
   use association _Item { create; }
+  use action approve;
 }
 
 define behavior for ZC_O_ITEM //alias <alias_name>
