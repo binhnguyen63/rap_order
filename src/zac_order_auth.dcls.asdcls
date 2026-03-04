@@ -1,0 +1,11 @@
+@EndUserText.label: 'access control'
+@MappingRole: true
+define role Zac_Order_Auth {
+    grant 
+        select
+            on
+                ZR_O_HEADER
+                    where
+                        (Status) = aspect pfcg_auth(ZAO_ORDER, ZAF_ORDER, ACTVT = '01');
+                        
+}

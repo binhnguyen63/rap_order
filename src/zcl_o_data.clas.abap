@@ -19,15 +19,18 @@ ENDCLASS.
 
 
 
-CLASS zcl_o_data IMPLEMENTATION.
+CLASS ZCL_O_DATA IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.
     generate_o_header( 1 ).
   ENDMETHOD.
+
+
   METHOD generate_o_account.
 
   ENDMETHOD.
+
 
   METHOD generate_o_header.
     DELETE FROM zsac_o_header.
@@ -111,12 +114,13 @@ CLASS zcl_o_data IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD generate_o_history.
 
   ENDMETHOD.
 
+
   METHOD generate_o_item.
 
   ENDMETHOD.
-
 ENDCLASS.

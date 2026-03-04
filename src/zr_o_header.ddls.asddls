@@ -1,4 +1,4 @@
-@AccessControl.authorizationCheck: #NOT_REQUIRED
+@AccessControl.authorizationCheck: #MANDATORY
 @EndUserText.label: 'root view'
 @Metadata.ignorePropagatedAnnotations: true
 define root view entity ZR_O_HEADER as select from zsac_o_header
